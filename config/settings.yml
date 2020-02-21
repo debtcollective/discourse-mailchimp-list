@@ -1,7 +1,6 @@
 plugins:
   discourse_mailchimp_list_enabled:
-    default: true
-    client: true
+    default: false
   discourse_mailchimp_list_id:
     default: '1234567890'
   discourse_mailchimp_api_key:
