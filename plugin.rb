@@ -30,7 +30,7 @@ after_initialize do
       name: user.name,
       list_id: list_id,
       api_key: api_key,
-      tags: ['discourse'],
+      tags: [{ name: "discourse", status: "active" }],
       debug: true
     }
 

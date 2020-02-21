@@ -32,16 +32,12 @@ module Jobs
         })
 
       # add tags to user
-      if tags.any?
-        gibbon_list
-          .members(email_digest)
-          .tags
-          .create(
-            body: {
-              tags: tags
-            }
-          )
-      end
+      gibbon_list
+        .members(email_digest)
+        .tags
+        .create(body: {
+          tags: tags
+        })
     rescue Gibbon::MailChimpError => e
       Raven.capture_exception(e) if defined?(Raven)
     end
