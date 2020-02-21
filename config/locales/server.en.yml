@@ -1,3 +1,5 @@
 en:
   site_settings:
-    discourse_mailchimp_list_enabled: "Enable DiscourseMailchimpList plugin"
+    discourse_mailchimp_list_enabled: 'Enable DiscourseMailchimpList plugin'
+    discourse_mailchimp_list_id: 'Mailchimp list ID, also called audience id'
+    discourse_mailchimp_api_key: "Mailchimp API key, you can get it <a href='http://admin.mailchimp.com/account/api'>here</a>"
