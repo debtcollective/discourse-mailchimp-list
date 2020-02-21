@@ -6,7 +6,7 @@ module Jobs
       name = args[:name]
       list_id = args[:list_id]
       api_key = args[:api_key]
-      debug = args[:debug]
+      debug = !!args[:debug]
       tags = args[:tags] || []
 
       # init Gibbon
@@ -32,12 +32,14 @@ module Jobs
         })
 
       # add tags to user
-      gibbon_list
-        .members(email_digest)
-        .tags
-        .create(body: {
-          tags: tags
-        })
+      if tags.any?
+        gibbon_list
+          .members(email_digest)
+          .tags
+          .create(body: {
+            tags: tags
+          })
+      end
     rescue Gibbon::MailChimpError => e
       Raven.capture_exception(e) if defined?(Raven)
     end
