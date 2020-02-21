@@ -17,9 +17,11 @@ module Jobs
       first_name, *last_name = name.split(' ')
       last_name = last_name.join(' ')
 
+      email_digest = Digest::MD5.hexdigest(email.downcase)
+
       # add user to list
       gibbon_list
-        .members(lower_case_md5_hashed_email_address)
+        .members(email_digest)
         .upsert(body: {
           email_address: email,
           status: "subscribed",
@@ -32,7 +34,7 @@ module Jobs
       # add tags to user
       if tags.any?
         gibbon_list
-          .members(Digest::MD5.hexdigest(lower_case_email_address))
+          .members(email_digest)
           .tags
           .create(
             body: {
