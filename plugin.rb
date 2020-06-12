@@ -16,17 +16,11 @@ after_initialize do
   load File.expand_path('../app/jobs/mailchimp_subscription.rb', __FILE__)
 
   DiscourseEvent.on(:user_created) do |user|
-    api_key = SiteSetting.discourse_mailchimp_api_key
-    list_id = SiteSetting.discourse_mailchimp_list_id
-
-    next unless SiteSetting.discourse_mailchimp_list_enabled && api_key && list_id
+    next unless SiteSetting.discourse_mailchimp_list_enabled
 
     # get arguments for job
     args = {
-      email: user.email,
-      name: user.name,
-      list_id: list_id,
-      api_key: api_key,
+      user_id: user.id,
       tags: [{ name: "discourse", status: "active" }],
       debug: true
     }
