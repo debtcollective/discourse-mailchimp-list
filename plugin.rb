@@ -10,7 +10,7 @@ enabled_site_setting :discourse_mailchimp_list_enabled
 
 PLUGIN_NAME ||= 'DiscourseMailchimpList'
 
-gem 'gibbon', '3.3.3'
+gem 'gibbon', '3.3.4'
 
 after_initialize do
   load File.expand_path('../app/jobs/mailchimp_subscription.rb', __FILE__)
